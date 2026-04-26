@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SummAIrize - AI Document Summarizer
 
-## Getting Started
+SummAIrize adalah platform cerdas berbasis AI yang membantu Anda meringkas dokumen panjang (PDF, Word, TXT) dalam hitungan detik. Menggunakan teknologi **Google Gemini 2.0 Flash** untuk akurasi dan kecepatan tinggi.
 
-First, run the development server:
+## Fitur Utama
+- **7 Mode Ringkasan:** Mulai dari poin utama, analisis ilmiah, hingga persiapan ujian.
+- **Chat Q&A:** Tanya jawab langsung dengan isi dokumen Anda.
+- **Guest Mode:** Keamanan data terjaga, dokumen diproses secara anonim.
+- **Multi-Format:** Mendukung PDF, DOCX, dan TXT.
+- **Ekspor Ringkasan:** Unduh hasil ringkasan ke file teks (.txt).
 
+---
+
+## Panduan Instalasi (Setup)
+
+Ikuti langkah-langkah di bawah ini untuk menjalankan project di mesin lokal Anda:
+
+### 1. Persiapan
+Pastikan Anda sudah menginstal:
+- [Node.js](https://nodejs.org/) (Versi 18 atau terbaru)
+- npm (Sudah termasuk dalam Node.js)
+
+### 2. Instalasi Dependensi
+Clone repositori ini dan jalankan perintah berikut di terminal:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Konfigurasi Environment (.env)
+Buat file bernama `.env` di root direktori project dan tambahkan baris berikut:
+```env
+DATABASE_URL="file:./dev.db"
+GEMINI_API_KEY="ISI_DENGAN_API_KEY_GEMINI_ANDA"
+```
+> **Catatan:** Anda bisa mendapatkan API Key secara gratis di [Google AI Studio](https://aistudio.google.com/).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Setup Database & Prisma
+Jalankan perintah berikut untuk menyiapkan database SQLite dan men-generate Prisma Client:
+```bash
+npx prisma db push
+npx prisma generate
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Jalankan Aplikasi
+Sekarang aplikasi siap dijalankan:
+```bash
+npm run dev
+```
+Buka [http://localhost:3000](http://localhost:3000) di browser Anda.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Teknologi yang Digunakan
+- **Frontend/Backend:** [Next.js 15+ (App Router)](https://nextjs.org/)
+- **AI Engine:** [Google Gemini API](https://ai.google.dev/)
+- **Database:** [SQLite](https://www.sqlite.org/) with [Prisma ORM](https://www.prisma.io/)
+- **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Lisensi
+Project ini dibuat untuk tujuan pembelajaran dan produktivitas pribadi.
