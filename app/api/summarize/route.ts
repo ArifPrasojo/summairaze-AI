@@ -3,13 +3,14 @@ import { prisma } from "@/lib/prisma";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { cookies } from "next/headers";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
-
 export async function POST(req: NextRequest) {
   try {
-    if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY.length < 10) {
-      return NextResponse.json({ error: "API Key Gemini tidak ditemukan atau tidak valid. Silakan periksa file .env dan restart server." }, { status: 500 });
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey || apiKey.length < 10) {
+      return NextResponse.json({ error: "API Key Gemini tidak ditemukan atau tidak valid. Silakan periksa Environment Variables di Vercel." }, { status: 500 });
     }
+
+    const genAI = new GoogleGenerativeAI(apiKey);
 
     const cookieStore = await cookies();
     const guestId = cookieStore.get("guest_id")?.value;
