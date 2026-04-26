@@ -105,7 +105,11 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error("General Upload Error:", error);
     return NextResponse.json(
-      { error: "Sistem gagal memproses permintaan", debug: error.message },
+      { 
+        error: "Sistem gagal memproses permintaan", 
+        debug: error.message,
+        hint: "Pastikan database sudah di-push menggunakan 'npx prisma db push'"
+      },
       { status: 500 }
     );
   }
