@@ -103,7 +103,7 @@ export default function UploadZone() {
   return (
     <div className="w-full max-w-2xl mx-auto">
       {/* Tab Switcher */}
-      <div className="flex p-1.5 bg-white border border-gray-100 rounded-2xl mb-6 shadow-sm max-w-xs mx-auto">
+      <div className="flex p-1.5 bg-white/80 backdrop-blur-md border border-white/50 rounded-2xl mb-8 shadow-xl shadow-indigo-100/30 max-w-xs mx-auto relative z-10">
         <button 
           onClick={() => setActiveTab("file")}
           className={`flex-1 py-2 text-sm font-bold rounded-xl transition-all ${activeTab === 'file' ? 'bg-indigo-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-700'}`}
@@ -123,10 +123,10 @@ export default function UploadZone() {
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
           onDrop={onDrop}
-          className={`relative flex flex-col items-center justify-center p-12 border-2 border-dashed rounded-3xl transition-all duration-300 ${
+          className={`relative flex flex-col items-center justify-center p-12 border-2 border-dashed rounded-3xl transition-all duration-500 overflow-hidden ${
             isDragging 
-              ? "border-indigo-500 bg-indigo-50/50 scale-[1.02]" 
-              : "border-gray-200 bg-white hover:border-indigo-400 hover:shadow-xl hover:shadow-indigo-500/5"
+              ? "border-indigo-500 bg-indigo-50/80 scale-[1.02] shadow-2xl shadow-indigo-200/50" 
+              : "border-white/60 bg-white/60 backdrop-blur-md shadow-xl shadow-indigo-50/50 hover:border-indigo-300 hover:shadow-2xl hover:shadow-indigo-100 hover:-translate-y-1"
           } ${isUploading ? "pointer-events-none opacity-70" : ""}`}
         >
           <input
@@ -161,7 +161,7 @@ export default function UploadZone() {
           )}
         </div>
       ) : (
-        <div className={`bg-white p-8 rounded-3xl border border-gray-100 shadow-sm transition-all ${isUploading ? "opacity-70 pointer-events-none" : ""}`}>
+        <div className={`bg-white/80 backdrop-blur-md p-8 rounded-3xl border border-white/50 shadow-xl shadow-indigo-50/50 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-100 hover:-translate-y-1 ${isUploading ? "opacity-70 pointer-events-none" : ""}`}>
           <div className="mb-6">
             <label className="block text-sm font-bold text-gray-700 mb-2">Judul Ringkasan (Opsional)</label>
             <input 
