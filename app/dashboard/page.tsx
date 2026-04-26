@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import UploadZone from "@/components/UploadZone";
+import DeleteDocumentButton from "@/components/DeleteDocumentButton";
 import { FileText, Clock, ChevronRight, History, Sparkles, LayoutDashboard } from "lucide-react";
 import Link from "next/link";
 import { cookies } from "next/headers";
@@ -171,8 +172,13 @@ export default async function DashboardPage() {
                       </div>
                     </div>
                     
-                    <div className="relative z-10 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-indigo-600 group-hover:shadow-md transition-all duration-300">
-                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                    <div className="relative z-10 flex items-center space-x-2">
+                      <div onClick={(e) => e.preventDefault()}>
+                        <DeleteDocumentButton id={doc.id} />
+                      </div>
+                      <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-indigo-600 group-hover:shadow-md transition-all duration-300">
+                        <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                      </div>
                     </div>
                   </Link>
                 ))}
