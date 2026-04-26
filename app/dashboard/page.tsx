@@ -66,11 +66,6 @@ export default async function DashboardPage() {
             <LayoutDashboard className="w-5 h-5 text-indigo-500 group-hover:scale-110 transition-transform" />
             <span>Dashboard</span>
           </Link>
-          
-          <div className="flex items-center space-x-3 px-4 py-3.5 rounded-2xl text-gray-500 font-medium transition-all hover:bg-gray-50/50 cursor-pointer group">
-            <History className="w-5 h-5 text-gray-400 group-hover:text-indigo-500 transition-colors" />
-            <span className="group-hover:text-gray-700 transition-colors">Riwayat Dokumen</span>
-          </div>
         </div>
 
         <div className="hidden md:block p-6 border-t border-gray-100/50">
@@ -173,9 +168,7 @@ export default async function DashboardPage() {
                     </div>
                     
                     <div className="relative z-10 flex items-center space-x-2">
-                      <div onClick={(e) => e.preventDefault()}>
-                        <DeleteDocumentButton id={doc.id} />
-                      </div>
+                      <DeleteDocumentButton id={doc.id} />
                       <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-indigo-600 group-hover:shadow-md transition-all duration-300">
                         <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
                       </div>
