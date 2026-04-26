@@ -12,13 +12,13 @@ export default function DocumentView({ document }: { document: any }) {
   const [activeSummary, setActiveSummary] = useState(
     document.summaries.length > 0 ? document.summaries[0] : null
   );
-  
+
   // Chat state
   const [chatInput, setChatInput] = useState("");
   const [messages, setMessages] = useState(document.messages || []);
   const [isSending, setIsSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  
+
   const router = useRouter();
 
   useEffect(() => {
@@ -43,10 +43,10 @@ export default function DocumentView({ document }: { document: any }) {
         const errorData = await res.json();
         throw new Error(errorData.error || "Gagal membuat ringkasan");
       }
-      
+
       const data = await res.json();
       setActiveSummary(data.summary);
-      router.refresh(); 
+      router.refresh();
     } catch (err) {
       console.error(err);
       alert("Terjadi kesalahan saat memproses ringkasan");
@@ -80,7 +80,7 @@ export default function DocumentView({ document }: { document: any }) {
         const errorData = await res.json();
         throw new Error(errorData.error || "Gagal mengirim pesan");
       }
-      
+
       const data = await res.json();
       setMessages((prev: any) => [...prev.filter((m: any) => !m.id.startsWith("temp-")), data.message]);
     } catch (err) {
@@ -100,7 +100,7 @@ export default function DocumentView({ document }: { document: any }) {
 
   const handleDownload = () => {
     if (!activeSummary) return;
-    
+
     const element = window.document.createElement("a");
     const file = new Blob([activeSummary.content], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
@@ -137,27 +137,27 @@ export default function DocumentView({ document }: { document: any }) {
               <Sparkles className="w-5 h-5 mr-2 text-indigo-500" />
               AI Studio
             </h2>
-            
+
             <div className="flex p-1 bg-gray-100 rounded-xl mb-6">
-              <button 
+              <button
                 onClick={() => setActiveTab("summary")}
                 className={`flex-1 flex items-center justify-center py-2 text-sm font-medium rounded-lg transition-all ${activeTab === 'summary' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
               >
                 Ringkasan
               </button>
-              <button 
+              <button
                 onClick={() => setActiveTab("chat")}
                 className={`flex-1 flex items-center justify-center py-2 text-sm font-medium rounded-lg transition-all ${activeTab === 'chat' ? 'bg-white shadow text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
               >
                 Chat Q&A
               </button>
             </div>
-            
+
             {activeTab === "summary" ? (
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Mode Ringkasan</label>
-                  <select 
+                  <select
                     value={summaryMode}
                     onChange={(e) => setSummaryMode(e.target.value)}
                     className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-indigo-500 focus:border-indigo-500 block p-3 transition-colors"
@@ -206,11 +206,10 @@ export default function DocumentView({ document }: { document: any }) {
                   <button
                     key={sum.id}
                     onClick={() => setActiveSummary(sum)}
-                    className={`w-full text-left p-3 rounded-xl border text-sm transition-colors ${
-                      activeSummary?.id === sum.id 
-                        ? "border-indigo-500 bg-indigo-50 text-indigo-700 font-medium" 
+                    className={`w-full text-left p-3 rounded-xl border text-sm transition-colors ${activeSummary?.id === sum.id
+                        ? "border-indigo-500 bg-indigo-50 text-indigo-700 font-medium"
                         : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50 text-gray-700"
-                    }`}
+                      }`}
                   >
                     <div className="capitalize font-semibold mb-1">{sum.type.replace('_', ' ')}</div>
                     <div className="text-xs opacity-70">
@@ -226,7 +225,7 @@ export default function DocumentView({ document }: { document: any }) {
         {/* Right Column: Content */}
         <div className="w-full lg:w-2/3 flex flex-col h-full overflow-hidden">
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm h-full flex flex-col overflow-hidden">
-            
+
             {activeTab === "summary" ? (
               <>
                 <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-white">
@@ -241,7 +240,7 @@ export default function DocumentView({ document }: { document: any }) {
                   </div>
                   {activeSummary && (
                     <div className="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-100">
-                      <button 
+                      <button
                         onClick={copyToClipboard}
                         className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-white hover:shadow-sm rounded-lg transition-all"
                         title="Salin ke Clipboard"
@@ -250,7 +249,7 @@ export default function DocumentView({ document }: { document: any }) {
                         <span className="hidden sm:inline">Salin</span>
                       </button>
                       <div className="w-px h-4 bg-gray-200 mx-1"></div>
-                      <button 
+                      <button
                         onClick={handleDownload}
                         className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 hover:bg-white hover:shadow-sm rounded-lg transition-all"
                         title="Unduh Ringkasan (.txt)"
@@ -261,7 +260,7 @@ export default function DocumentView({ document }: { document: any }) {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="p-8 flex-1 overflow-y-auto bg-gray-50/30 relative">
                   {isGenerating && (
                     <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8 transition-all animate-in fade-in duration-300">
@@ -281,7 +280,7 @@ export default function DocumentView({ document }: { document: any }) {
                       <div className="prose prose-indigo prose-lg max-w-none text-gray-700 leading-[1.8] whitespace-pre-wrap font-serif">
                         {activeSummary.content}
                       </div>
-                      
+
                       <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
                         <p>Diringkas oleh SummAIrize AI • {new Date(activeSummary.createdAt).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}</p>
                         <div className="flex items-center space-x-1">
@@ -309,7 +308,7 @@ export default function DocumentView({ document }: { document: any }) {
                   <MessageSquare className="w-5 h-5 mr-2 text-indigo-500" />
                   <h3 className="font-semibold text-gray-800">Chat with Document</h3>
                 </div>
-                
+
                 {/* Chat Messages */}
                 <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
                   {messages.length === 0 ? (
