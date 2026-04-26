@@ -43,6 +43,8 @@ export async function POST(req: NextRequest) {
       systemPrompt = "Identifikasi semua tindakan lanjutan (action items), tugas, atau rekomendasi yang disebutkan dalam dokumen dalam bentuk daftar centang.";
     } else if (mode === "tl_dr") {
       systemPrompt = "Berikan ringkasan TL;DR (Too Long; Didn't Read) yang sangat singkat dalam maksimal 2 kalimat saja.";
+    } else if (mode === "humanoid") {
+      systemPrompt = "Tulis ulang isi dokumen ini dengan gaya bahasa manusia yang natural. Hindari pola kalimat AI yang kaku, gunakan variasi panjang kalimat, gunakan kosakata yang tidak membosankan, dan jangan gunakan kata transisi klise seperti 'Selain itu', 'Kesimpulannya', atau 'Penting untuk dicatat'. Tujuannya adalah agar teks terlihat ditulis oleh manusia.";
     } else {
       return NextResponse.json({ error: "Mode tidak valid" }, { status: 400 });
     }

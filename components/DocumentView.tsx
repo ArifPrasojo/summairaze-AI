@@ -169,6 +169,7 @@ export default function DocumentView({ document }: { document: any }) {
                     <option value="exam_prep">🎓 Persiapan Ujian (Konsep & Soal)</option>
                     <option value="action_items">✅ Daftar Tugas (Action Items)</option>
                     <option value="tl_dr">⚡ TL;DR (Sangat Singkat)</option>
+                    <option value="humanoid">👤 Gaya Bahasa Manusia (Anti-AI Detection)</option>
                   </select>
                 </div>
 
