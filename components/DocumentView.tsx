@@ -263,15 +263,25 @@ export default function DocumentView({ document }: { document: any }) {
 
                 <div className="p-8 flex-1 overflow-y-auto bg-gray-50/30 relative">
                   {isGenerating && (
-                    <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center text-center p-8 transition-all animate-in fade-in duration-300">
-                      <div className="relative mb-6">
-                        <div className="absolute inset-0 bg-indigo-200 blur-2xl rounded-full opacity-30 animate-pulse"></div>
-                        <Loader2 className="w-12 h-12 text-indigo-600 animate-spin relative z-10" />
+                    <div className="absolute inset-0 bg-white/80 backdrop-blur-xl z-20 flex flex-col items-center justify-center text-center p-8 transition-all animate-in zoom-in-95 duration-500 rounded-2xl">
+                      {/* Glowing orb */}
+                      <div className="relative mb-8">
+                        <div className="absolute inset-0 bg-indigo-500 blur-[40px] rounded-full opacity-50 animate-pulse scale-150"></div>
+                        <div className="relative w-20 h-20 bg-gradient-to-tr from-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl shadow-indigo-500/50 animate-bounce shadow-lg border border-white/20">
+                          <Sparkles className="w-10 h-10 text-white" />
+                        </div>
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">Sedang Meringkas...</h3>
-                      <p className="text-gray-500 max-w-xs animate-pulse">
-                        AI sedang mengekstrak wawasan terbaik dari dokumen Anda.
-                      </p>
+                      
+                      <h3 className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-700 mb-3 tracking-tight">
+                        Menyusun Ringkasan Cerdas...
+                      </h3>
+                      <p className="text-gray-600 font-medium mb-4">Menganalisis miliaran parameter untuk hasil terbaik</p>
+                      
+                      <div className="flex items-center justify-center space-x-2">
+                        <div className="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-purple-600 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                        <div className="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                      </div>
                     </div>
                   )}
 

@@ -40,19 +40,27 @@ export default async function DashboardPage() {
       </div>
 
       {/* Sidebar - Glassmorphism */}
-      <aside className="w-full md:w-72 relative z-10 glass-morphism border-r border-white/50 flex flex-col md:h-screen sticky top-0 bg-white/70 backdrop-blur-xl">
-        <div className="p-8 border-b border-gray-100/50 flex items-center space-x-4">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-200">
-            <Sparkles className="w-5 h-5 text-white" />
+      <aside className="w-full md:w-72 relative z-20 glass-morphism border-b md:border-b-0 md:border-r border-white/50 flex flex-col md:h-screen sticky top-0 bg-white/80 backdrop-blur-xl">
+        <div className="p-6 md:p-8 border-b border-gray-100/50 flex items-center justify-between md:justify-start space-x-4">
+          <div className="flex items-center space-x-4">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-200">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <span className="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-700 tracking-tight block">
+                SummAIrize
+              </span>
+            </div>
           </div>
-          <div>
-            <span className="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 to-purple-700 tracking-tight block">
-              SummAIrize
+          <div className="md:hidden flex items-center space-x-2 bg-green-50/80 border border-green-100 px-3 py-1.5 rounded-full">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
           </div>
         </div>
         
-        <div className="p-6 flex-grow space-y-2">
+        <div className="hidden md:flex p-6 flex-grow flex-col space-y-2">
           <Link href="/dashboard" className="flex items-center space-x-3 px-4 py-3.5 rounded-2xl bg-white shadow-sm border border-indigo-50 text-indigo-700 font-medium transition-all hover:shadow-md group">
             <LayoutDashboard className="w-5 h-5 text-indigo-500 group-hover:scale-110 transition-transform" />
             <span>Dashboard</span>
@@ -64,7 +72,7 @@ export default async function DashboardPage() {
           </div>
         </div>
 
-        <div className="p-6 border-t border-gray-100/50">
+        <div className="hidden md:block p-6 border-t border-gray-100/50">
           <div className="flex items-center justify-center space-x-2 bg-green-50/80 border border-green-100 px-4 py-3 rounded-2xl backdrop-blur-sm">
             <span className="relative flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
