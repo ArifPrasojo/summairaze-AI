@@ -156,21 +156,41 @@ export default function DocumentView({ document }: { document: any }) {
             {activeTab === "summary" ? (
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Mode Ringkasan</label>
-                  <select
-                    value={summaryMode}
-                    onChange={(e) => setSummaryMode(e.target.value)}
-                    className="w-full bg-gray-50 border border-gray-200 text-gray-900 text-sm rounded-xl focus:ring-indigo-500 focus:border-indigo-500 block p-3 transition-colors"
-                  >
-                    <option value="summary">📝 Ringkasan Pendek (1-2 Paragraf)</option>
-                    <option value="key_points">📌 Poin Utama (Bullet Points)</option>
-                    <option value="executive">👔 Executive Summary (Formal)</option>
-                    <option value="scientific">🔬 Analisis Ilmiah (Metodologi/Hasil)</option>
-                    <option value="exam_prep">🎓 Persiapan Ujian (Konsep & Soal)</option>
-                    <option value="action_items">✅ Daftar Tugas (Action Items)</option>
-                    <option value="tl_dr">⚡ TL;DR (Sangat Singkat)</option>
-                    <option value="humanoid">👤 Gaya Bahasa Manusia (Anti-AI Detection)</option>
-                  </select>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">Pilih Mode Ringkasan</label>
+                  <div className="grid grid-cols-2 gap-3 max-h-[320px] overflow-y-auto pr-1 pb-1">
+                    {[
+                      { id: 'summary', icon: '📝', label: 'Ringkas', desc: '1-2 Paragraf' },
+                      { id: 'key_points', icon: '📌', label: 'Poin Utama', desc: 'Bullet points' },
+                      { id: 'executive', icon: '👔', label: 'Executive', desc: 'Gaya formal' },
+                      { id: 'scientific', icon: '🔬', label: 'Ilmiah', desc: 'Analisis riset' },
+                      { id: 'exam_prep', icon: '🎓', label: 'Ujian', desc: 'Konsep & soal' },
+                      { id: 'action_items', icon: '✅', label: 'Tugas', desc: 'Action items' },
+                      { id: 'tl_dr', icon: '⚡', label: 'TL;DR', desc: 'Super singkat' },
+                      { id: 'humanoid', icon: '👤', label: 'Manusia', desc: 'Anti-AI Detect' },
+                    ].map((mode) => (
+                      <button
+                        key={mode.id}
+                        onClick={() => setSummaryMode(mode.id)}
+                        className={`text-left p-3 rounded-xl border transition-all duration-200 group ${
+                          summaryMode === mode.id 
+                            ? 'bg-gradient-to-br from-indigo-50 to-white border-indigo-500 shadow-sm ring-1 ring-indigo-500/50' 
+                            : 'bg-white border-gray-100 hover:border-indigo-300 hover:bg-gray-50 hover:shadow-md'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-2 mb-1">
+                          <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-sm transition-colors ${summaryMode === mode.id ? 'bg-indigo-100' : 'bg-gray-50 group-hover:bg-indigo-50'}`}>
+                            {mode.icon}
+                          </div>
+                          <span className={`font-bold text-sm transition-colors ${summaryMode === mode.id ? 'text-indigo-900' : 'text-gray-700 group-hover:text-indigo-700'}`}>
+                            {mode.label}
+                          </span>
+                        </div>
+                        <p className={`text-xs pl-9 transition-colors ${summaryMode === mode.id ? 'text-indigo-600 font-medium' : 'text-gray-400'}`}>
+                          {mode.desc}
+                        </p>
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
                 <button
